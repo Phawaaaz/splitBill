@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import FriendList from "./FriendList";
 import FormAddFriend from "./FormAddFriend";
@@ -45,12 +44,12 @@ export default function App() {
     setSelectedFriend((selected) =>
       selected?.id === friend.id ? null : friend
     );
-    // showAddFriend(false);
+    setShowAddFriend(false);
   }
 
   function handleSplitBill(value) {
-    setAddFriend((friend) =>
-      friend.map(
+    setAddFriend((friends) =>
+      friends.map((friend) =>
         friend.id === selectedFriend.id
           ? { ...friend, balance: friend.balance + value }
           : friend
@@ -59,11 +58,12 @@ export default function App() {
 
     setSelectedFriend(null);
   }
+
   return (
     <div className="app">
       <div className="sidebar">
         <FriendList
-          friend={friend}
+          friend={addFriend}
           addFriend={addFriend}
           onSelection={handleSelection}
           selectedFriend={selectedFriend}
